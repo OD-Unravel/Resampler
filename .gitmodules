@@ -1,0 +1,3 @@
+[submodule "resampler/src/main/cpp/oboe"]
+	path = resampler/src/main/cpp/oboe
+	url = git@github.com:google/oboe.git
