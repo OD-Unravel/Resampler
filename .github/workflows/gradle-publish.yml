@@ -22,9 +22,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Update submodules
-        run: git submodule update --init --recursive
+        with:
+          token: ${{ secrets.CI_TOKEN }}
+          submodules: recursive
 
       - name: Set up JDK 17
         uses: actions/setup-java@v2
