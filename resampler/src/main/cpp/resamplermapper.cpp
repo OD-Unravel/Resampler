@@ -16,6 +16,7 @@ namespace resamplermapping {
     Java_team_unravel_resampler_Resampler_close(JNIEnv *env, jobject thiz) {
         auto *resampler = InstanceHandler::getHandle<oboe::resampler::MultiChannelResampler>(env,
                                                                                                                thiz);
+        InstanceHandler::setHandleFieldValue(env, thiz, -1);
         InstanceHandler::clearGlobalReferences(env, thiz);
         delete resampler;
     }
@@ -39,6 +40,8 @@ namespace resamplermapping {
                                                               jint target_channel_count) {
         auto *oboeResampler = InstanceHandler::getHandle<oboe::resampler::MultiChannelResampler>(env,
                                                                                                                    thiz);
+
+        if (oboeResampler == nullptr) return 0;
 
         if (oboeResampler != nullptr && source_channel_count > 0 && target_channel_count > 0) {
             auto sourceBuffer = (jbyte *) env->GetDirectBufferAddress(source_buffer);

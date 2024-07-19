@@ -17,6 +17,12 @@ class Resampler constructor(
     initResampler(sourceSampleRate, targetSampleRate, targetChannelCount)
   }
 
+  // Just insure that close gets called, in case the user forgot.
+  protected fun finalize() {
+    // It is safe to call this twice, in case the user already did.
+    close()
+  }
+
   private external fun initResampler(sourceSampleRate: Int, targetSampleRate: Int, targetChannelCount: Int);
 
   fun processAudioBuffers(sourceBuffer: ByteBuffer, outputBuffer: ByteBuffer) : Int {

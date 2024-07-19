@@ -12,7 +12,8 @@ namespace androidresampler {
     template<typename T>
     T *InstanceHandler::getHandle(JNIEnv *env, jobject obj) {
         jlong handle = getHandleFieldValue(env, obj);
-        return reinterpret_cast<T *>(handle);
+        if (handle == -1 || handle == 0) return nullptr;
+        else return reinterpret_cast<T *>(handle);
     }
 }
 #endif // INSTANCE_HANDLER_TPP
