@@ -55,3 +55,5 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 
 # Make the Oboe public headers available to our app
 include_directories(${OBOE_DIR}/include ${OBOE_DIR}/src/flowgraph)
+
+target_link_options(resampler PRIVATE "-Wl,-z,max-page-size=16384")
